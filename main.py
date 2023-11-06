@@ -1,11 +1,33 @@
-from flask import render_template
+from flask import render_template, request, redirect, url_for
 
-from models import db, app
+from models import db, app, Pet
 
 
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.route("/add-pet", methods=["GET", "POST"])
+def add_pet():
+    if request.form:  # tady jde post
+        new_pet = Pet(
+            name=request.form["name"],
+            age=request.form["age"],
+            breed=request.form["breed"],
+            color=request.form["color"],
+            size=request.form["size"],
+            weight=request.form["weight"],
+            url=request.form["url"],
+            gender=request.form["gender"],
+            spay=request.form["spay"],
+            description=request.form["description"],
+        )
+        db.session.add(new_pet)
+        db.session.commit()
+        return redirect(url_for("index"))
+
+    return render_template("addpet.html")
+
 
 # MVC - model view controller - Flask
 # MVP - model view presenter - Netter PHP
