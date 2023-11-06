@@ -1,4 +1,5 @@
 # 1JAcnSkyjjyE2wuZ
+import datetime
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -14,3 +15,25 @@ app.config["SQLALCHEMY_DATABASE_URI"] = f"postgresql+psycopg://{user}:password@{
 
 
 db = SQLAlchemy(app)
+
+
+class Pet(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    created = db.Column(db.DateTime, default=datetime.datetime.now)
+    name = db.Column(db.String())
+    age = db.Column(db.String())
+    breed = db.Column(db.String())
+    color = db.Column(db.String())
+    size = db.Column(db.String())
+    weight = db.Column(db.String())
+    url = db.Column(db.String())
+    gender = db.Column(db.String())
+    spay = db.Column(db.String())
+    description = db.Column(db.String())
+
+    def __repr__(self):
+        return f"""
+            Name: {self.name} Color: {self.color}
+            Age: {self.age}
+        """
+
