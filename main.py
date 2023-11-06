@@ -29,6 +29,12 @@ def add_pet():
     return render_template("addpet.html")
 
 
+@app.route("/pet/<id>")
+def pet(id):
+    pet = Pet.query.get_or_404(id)
+    return render_template("pet.html", pet=pet)
+
+
 # MVC - model view controller - Flask
 # MVP - model view presenter - Netter PHP
 # MVVM - model view view-model - Angular

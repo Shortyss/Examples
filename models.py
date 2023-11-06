@@ -32,8 +32,10 @@ class Pet(db.Model):
     description = db.Column(db.String())
 
     def __repr__(self):
-        return f"""
-            Name: {self.name} Color: {self.color}
-            Age: {self.age}
-        """
-
+        return f'''<Pet Name: {self.name} Age: {self.age} 
+                    Breed: {self.breed} Color: {self.color}
+                    Size: {self.size} Weight: {self.weight}
+                    URL: {self.url} Type: {self.pet_type}
+                    Gender: {self.gender} Spay: {self.spay}
+                    House Trained: {self.house_trained}
+                    Description: {self.description}>'''
